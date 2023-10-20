@@ -44,22 +44,22 @@ print(result)
 result_alarm = infer.query(variables=['Alarma'])
 
 # Calcularea probabilității condiționate P(Alarma = 1 | Cutremur = 1)
-result_alarm_given_earthquake = infer.query(variables=['Alarma'], evidence={'Cutremur': 1})
+result_alarm_cu_cutremur = infer.query(variables=['Alarma'], evidence={'Cutremur': 1})
 
 # Calcularea probabilității P(Cutremur = 1 | Alarma = 1) folosind teorema lui Bayes
-prob_cutremur_given_alarm = (result_alarm_given_earthquake.values[1] * cpd_cutremur.values[1]) / result_alarm.values[1]
+prob_cutremur_cu_alarma = (result_alarm_cu_cutremur.values[1] * cpd_cutremur.values[1]) / result_alarm.values[1]
 
-print(prob_cutremur_given_alarm)
+print(prob_cutremur_cu_alarma)
 
 
-# # Calcularea probabilității că alarma de incendiu nu este activată
-# result_no_alarm = infer.query(variables=['Alarma'], evidence={'Alarma': 0})
-#
-# # Calcularea probabilității că un incendiu a avut loc fără ca alarma de incendiu să se activeze
-# result_fire_given_no_alarm = infer.query(variables=['Incendiu'])
-#
-# prob_fire_given_no_alarm = result_fire_given_no_alarm.values[1]
-#
-# print(prob_fire_given_no_alarm)
+ # Calcularea probabilității că alarma de incendiu nu este activată
+ result_no_alarm = infer.query(variables=['Alarma'], evidence={'Alarma': 0})
+
+# Calcularea probabilității că un incendiu a avut loc fără ca alarma de incendiu să se activeze
+result_fire_fara_alarm = infer.query(variables=['Incendiu'])
+
+prob_fire_fara_alarm = result_fire_fara_alarm.values[1]
+
+print(prob_fire_fara_alarm)
 
 
