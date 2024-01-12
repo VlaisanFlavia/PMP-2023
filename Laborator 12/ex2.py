@@ -9,7 +9,7 @@ def estimate_pi(N):
     error = np.abs(pi_estimate - np.pi)
     return error
 
-# Numerele de puncte N
+# Valorile N
 Ns = [100, 1000, 10000]
 
 # Rulez codul de mai multe ori pentru fiecare N și salvez erorile
